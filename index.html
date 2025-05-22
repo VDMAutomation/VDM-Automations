@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDM Automations - Intelligente Automatisierungslösungen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #06b6d4;
+            --primary-dark: #0891b2;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background-color: rgba(6, 182, 212, 0.1);
+            color: var(--primary);
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .solution-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .solution-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #cbd5e1;
+        }
+        
+        .solution-card:hover .feature-icon {
+            transform: scale(1.1);
+            background-color: rgba(6, 182, 212, 0.2);
+        }
+        
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .solution-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(6, 182, 212, 0.3);
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .cta-button:hover::after {
+            opacity: 1;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .highlight-box {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px dashed rgba(6, 182, 212, 0.3);
+            border-radius: 16px;
+            z-index: -1;
+            animation: pulse 8s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.02); opacity: 0.6; }
+            100% { transform: scale(1); opacity: 0.3; }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-100 py-4 sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-gray-900 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    VDM Automations
+                </span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#solutions" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Lösungen</a>
+                <a href="#technology" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Technologie</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-gray-900 font-medium">Kontakt</a>
+            </div>
+            <div class="md:hidden">
+                <button class="text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20 md:py-32 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-cyan-400 filter blur-3xl"></div>
+            <div class="absolute top-2/3 right-1/4 w-96 h-96 rounded-full bg-blue-400 filter blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6 fade-in">
+                    Automatisierung, die Zeit spart und Wachstum freisetzt.
+                </h1>
+                <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto fade-in delay-1">
+                    Professionelle Lösungen für Selbstständige, KMUs, Coaches & Steuerkanzleien. Unsere Systeme unterstützen Sie dabei, effizienter zu arbeiten – ohne zusätzliche Belastung.
+                </p>
+                <div class="fade-in delay-2">
+                    <button onclick="openModal()" class="cta-button text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center">
+    <span class="relative z-10">Kostenloses Erstgespräch buchen</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 relative z-10" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+</button>
+                </div>
+            </div>
+            
+            <div class="mt-20 max-w-4xl mx-auto fade-in delay-3">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 highlight-box">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                            <div class="w-40 h-40 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-full flex items-center justify-center floating">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 md:pl-8">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Struktur schaffen. Zeit gewinnen.</h3>
+                            <p class="text-gray-600">
+                                Unsere Automatisierungslösungen übernehmen repetitive Aufgaben, während Sie sich auf Ihr Kerngeschäft konzentrieren. Effizienz durch Technologie – ohne Kompromisse bei Qualität oder Professionalität.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="text-sm font-semibold tracking-wider text-cyan-600 uppercase mb-2 inline-block">Technologische Exzellenz</span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Effizient entwickelt. Zuverlässig im Betrieb.</h2>
+                <p class="text-xl text-gray-600">
+                    Unsere Systeme arbeiten präzise im Hintergrund – für mehr Effizienz in Ihrem Tagesgeschäft.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-sm fade-in">
+                    <div class="feature-icon mb-6 mx-auto">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Intelligente Automatisierung</h3>
+                    <p class="text-gray-600 text-center">
+                        Sie geben den Ton an – unsere Systeme kümmern sich um den Rest.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm fade-in delay-1">
+                    <div class="feature-icon mb-6 mx-auto">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Spürbare Zeitersparnis</h3>
+                    <p class="text-gray-600 text-center">
+                        Konzentrieren Sie sich auf Ihr Kerngeschäft, während wir die wiederkehrenden Aufgaben automatisieren.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm fade-in delay-2">
+                    <div class="feature-icon mb-6 mx-auto">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Smarte KI-Integration</h3>
+                    <p class="text-gray-600 text-center">
+                        Modernes Kundenerlebnis durch natürliche Sprachverarbeitung und intelligente Interaktion.
+                    </p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-sm fade-in delay-3">
+                    <div class="feature-icon mb-6 mx-auto">
+                        <i class="fas fa-hand-pointer"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Einfach bedienbar</h3>
+                    <p class="text-gray-600 text-center">
+                        Durchdachte Abläufe und klare Interfaces machen die Nutzung intuitiv – ganz ohne Einarbeitung.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center mb-16">
+                <span class="text-sm font-semibold tracking-wider text-cyan-600 uppercase mb-2 inline-block">Unsere Lösungen</span>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Effizienz neu gedacht</h2>
+                <p class="text-xl text-gray-600">
+                    Mit intelligenten Automatisierungslösungen für Ihren Geschäftserfolg
+                </p>
+            </div>
+            
+            <div class="max-w-5xl mx-auto bg-white p-8 rounded-xl mb-12 shadow-sm border border-gray-100 fade-in">
+                <p class="text-lg text-gray-700 text-center font-medium">
+                    <i class="fas fa-quote-left text-cyan-500 mr-2 opacity-70"></i>
+                    Leistungsfähige Automatisierungen, die unbemerkt für Sie arbeiten – konstant, verlässlich, intelligent.
+                    <i class="fas fa-quote-right text-cyan-500 ml-2 opacity-70"></i>
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="solution-card bg-white p-8 rounded-xl fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon mr-4">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">Automatisierte Zahlungserinnerungen</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Täglich um 07:00 Uhr prüft ein intelligentes System überfällige Rechnungen (7–42 Tage) und versendet bei Bedarf stilvolle Zahlungserinnerungen – automatisch, professionell und zuverlässig.
+                    </p>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        <p class="text-gray-700 font-medium flex items-center">
+                            <i class="fas fa-check-circle text-cyan-500 mr-2"></i>
+                            Klar definierte Abläufe – nachvollziehbar, zuverlässig, effizient.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="solution-card bg-white p-8 rounded-xl fade-in delay-1">
+                    <div class="flex items-center mb-4">
+                        <div class="feature-icon mr-4">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-900">KI-gestützte Website-Assistenten</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Moderne Chatbots für Kunden-Websites, die mit Google Calendar verbunden sind und selbstständig Termine prüfen, buchen und bestätigen können. Die Nutzer erleben natürliche Sprache; die Integration erfolgt reibungslos.
+                    </p>
+                    <div class="bg-gray-50 p-4 rounded-lg border border-gray-100">
+                        <p class="text-gray-700 font-medium flex items-center">
+                            <i class="fas fa-check-circle text-cyan-500 mr-2"></i>
+                            Terminbuchung mit Kalender-Integration – direkt auf Ihrer Website.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Stats Section -->
+<section class="py-16 bg-gradient-to-r from-cyan-500 to-blue-500 text-white">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+            <div class="fade-in">
+                <div class="text-4xl font-bold mb-2">24/7</div>
+                <div class="text-lg font-medium">Betriebszeit</div>
+            </div>
+            <div class="fade-in delay-1">
+                <div class="text-4xl font-bold mb-2">Schlanke Prozesse</div>
+                <div class="text-lg font-medium">Weniger Klicks, mehr Wirkung</div>
+            </div>
+            <div class="fade-in delay-2">
+                <div class="text-4xl font-bold mb-2">Effizient</div>
+                <div class="text-lg font-medium">Wartungsarm und lösungsorientiert</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-1/3 left-1/4 w-64 h-64 rounded-full bg-cyan-400 filter blur-3xl"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-blue-400 filter blur-3xl"></div>
+        </div>
+        
+    <div class="container mx-auto px-4 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <span class="text-sm font-semibold tracking-wider text-cyan-400 uppercase mb-2 inline-block">Kontakt</span>
+                <h2 class="text-3xl font-bold mb-6">Bereit für mehr Effizienz?</h2>
+                <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">
+                    Vereinbaren Sie ein kostenloses Erstgespräch und erfahren Sie, wie unsere Automatisierungslösungen Ihr Business optimieren können.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#" onclick="openModal()" class="cta-button text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center justify-center">
+    <span class="relative z-10">Kostenloses Erstgespräch buchen</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 relative z-10" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+    </svg>
+</a>
+                            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                    <a href="mailto:kontakt@vdmautomations.com" class="bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-lg inline-flex items-center justify-center transition-colors">
+                        <span>E-Mail senden</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Modal -->
+<div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative">
+    <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <h3 class="text-2xl font-bold mb-6 text-center">Kostenloses Erstgespräch buchen</h3>
+
+    <form action="https://formsubmit.co/kontakt@vdmautomations.com" method="POST" class="space-y-4">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_next" value="https://vdmautomations.com/danke.html">
+
+  <div>
+    <label class="block text-gray-700 font-semibold mb-1">Datum</label>
+    <input type="date" name="Datum" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+  </div>
+  <div>
+    <label class="block text-gray-700 font-semibold mb-1">Uhrzeit</label>
+    <input type="time" name="Uhrzeit" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+  </div>
+  <div>
+    <label class="block text-gray-700 font-semibold mb-1">Interesse</label>
+    <select name="Interesse" class="w-full border border-gray-300 rounded-lg px-4 py-2" required>
+      <option value="" disabled selected>Bitte wählen</option>
+      <option>Automatisierte Zahlungserinnerung</option>
+      <option>KI-Chatbot für die Website</option>
+    </select>
+  </div>
+  <div>
+    <label class="block text-gray-700 font-semibold mb-1">E-Mail-Adresse</label>
+    <input type="email" name="E-Mail" class="w-full border border-gray-300 rounded-lg px-4 py-2" placeholder="z. B. max@firma.com" required>
+  </div>
+  <div class="text-center">
+    <button type="submit" class="bg-cyan-600 hover:bg-cyan-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors">
+      Termin anfragen
+    </button>
+  </div>
+</form>
+  </div>
+</div>
+
+
+   <!-- Footer -->
+<footer class="bg-gray-100 py-12 border-t border-gray-200">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-6 md:mb-0">
+                <div class="text-xl font-bold text-gray-900 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-cyan-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    VDM Automations
+                </div>
+                <p class="text-gray-600 mt-2">Automatisierung, die für Sie denkt.</p>
+            </div>
+            <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6 text-sm pl-6 md:pl-16">
+                <a href="#datenschutz" class="text-gray-600 hover:text-gray-900 transition-colors">Datenschutz</a>
+                <a href="#impressum" class="text-gray-600 hover:text-gray-900 transition-colors">Impressum</a>
+                <a href="#" onclick="document.getElementById('agbModal').classList.remove('hidden')" class="text-gray-600 hover:text-gray-900 transition-colors">AGB</a>
+            </div>
+        </div>
+        <div class="border-t border-gray-200 mt-8 pt-8 text-center text-sm text-gray-500">
+            © 2025 VDM Automations. Alle Rechte vorbehalten.
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const fadeInObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            fadeInObserver.observe(element);
+        });
+        
+        // Mobile menu toggle (would need implementation)
+        const mobileMenuButton = document.querySelector('.md:hidden button');
+        mobileMenuButton.addEventListener('click', () => {
+            // Implement mobile menu toggle functionality here
+            console.log('Mobile menu clicked');
+        });
+    </script>
+<script>
+  function openModal() {
+    document.getElementById('bookingModal').classList.remove('hidden');
+  }
+
+  function closeModal() {
+    document.getElementById('bookingModal').classList.add('hidden');
+  }
+</script>
+
+<!-- Datenschutz Modal hier einfügen -->
+<div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative">
+    <button onclick="document.getElementById('privacyModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <h3 class="text-2xl font-bold mb-6 text-center">Datenschutzerklärung</h3>
+    <div class="text-gray-700 text-sm space-y-3 max-h-96 overflow-y-auto">
+      <p>Wir verwenden Ihre Daten zur Bearbeitung Ihrer Anfrage und zur Verbesserung unserer Dienstleistungen.</p>
+      <p>Dazu setzen wir Dienste wie Google (z. B. Google Sheets, Calendar) und OpenAI ein. Diese Anbieter können Daten verarbeiten.</p>
+      <p>Ihre E-Mail-Adresse wird genutzt, um mit Ihnen bezüglich Ihrer Anfrage in Kontakt zu treten.</p>
+      <p>Bei Fragen zum Datenschutz schreiben Sie uns an: kontakt@vdmautomations.com</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Öffnet Datenschutzmodal
+  document.querySelectorAll('a[href="#datenschutz"]').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('privacyModal').classList.remove('hidden');
+    });
+  });
+</script>
+<!-- Impressum Modal -->
+<div id="impressumModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-8 relative">
+    <button onclick="document.getElementById('impressumModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <h3 class="text-2xl font-bold mb-6 text-center">Impressum</h3>
+    <div class="text-sm text-gray-600">
+  <p><strong>VDM Automations</strong></p>
+  <p>Inhaber: V. D.</p>
+  <p>Standort: 1200 Wien, Österreich</p>
+  <p>E-Mail: kontakt@vdmautomations.com</p>
+</div>
+  </div>
+</div>
+
+<script>
+  // Öffnet Impressum-Modal
+  document.querySelectorAll('a[href="#impressum"]').forEach(el => {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('impressumModal').classList.remove('hidden');
+    });
+  });
+</script>
+<!-- AGB Modal -->
+<div id="agbModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-2xl shadow-xl w-full max-w-2xl p-8 relative">
+    <button onclick="document.getElementById('agbModal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    <h2 class="text-xl font-bold mb-4">Allgemeine Geschäftsbedingungen (AGB)</h2>
+    <div class="space-y-3 text-sm text-gray-700">
+      <p>1. Geltung: Diese AGB gelten für alle Dienstleistungen von VDM Automations.</p>
+      <p>2. Erstgespräch: Das kostenlose Erstgespräch ist unverbindlich und dient der Bedarfsklärung.</p>
+      <p>3. Vertragsabschluss: Ein kostenpflichtiger Vertrag kommt erst zustande, wenn der Kunde nach dem kostenlosen Erstgespräch eine Leistung ausdrücklich beauftragt – z. B. per E-Mail, Nachricht oder schriftlicher Bestätigung.</p>
+      <p>4. Zahlung: Der vereinbarte Betrag ist nach Auftragsbestätigung fällig, sofern nicht anders vereinbart.</p>
+      <p>5. Haftung: Es wird keine Haftung für indirekte Schäden oder entgangenen Gewinn übernommen.</p>
+      <p>6. Gerichtsstand: Es gilt österreichisches Recht, Gerichtsstand ist Wien.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
