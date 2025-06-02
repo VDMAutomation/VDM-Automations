@@ -636,5 +636,42 @@
 		webhookUrl: 'https://vdmautomation.app.n8n.cloud/webhook/6fbb6da6-ed63-4df2-8c45-eeebb454c52d/chat'
 	});
 </script>
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<style>
+  :root {
+    --chat--color-primary: #1e3a8a; /* Dunkelblau */
+    --chat--color-primary-shade-50: #1e40af;
+    --chat--color-primary-shade-100: #1e429f;
+    --chat--color-secondary: #0ea5e9; /* Hellblau */
+    --chat--color-white: #ffffff;
+    --chat--color-dark: #0f172a; /* sehr dunkles Blau */
+    --chat--color-light: #f1f5f9;
+    --chat--toggle--size: 60px;
+    --chat--window--width: 420px;
+    --chat--window--height: 580px;
+    --chat--border-radius: 1rem;
+    --chat--header--background: var(--chat--color-primary);
+    --chat--header--color: var(--chat--color-white);
+  }
+</style>
+
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://yourname.n8n.cloud/webhook/abc123xyz', // <-- hier dein Webhook-URL
+    initialMessages: [
+      'Hallo, ich bin V2D2! 🤖 Wie kann ich dir helfen?'
+    ],
+    i18n: {
+      en: {
+        title: 'Hallo, ich bin V2D2! 🤖',
+        subtitle: "Ich unterstütze dich bei AI Automations.",
+        inputPlaceholder: 'Frag mich etwas ...',
+        getStarted: 'Neue Unterhaltung'
+      }
+    }
+  });
+</script>
 </body>
 </html>
