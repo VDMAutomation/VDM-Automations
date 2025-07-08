@@ -646,7 +646,14 @@
     --chat--header--color: var(--chat--color-white);
   }
 </style>
-
+<style>
+  elevenlabs-convai {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+  }
+</style>
 <script type="module">
   import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
